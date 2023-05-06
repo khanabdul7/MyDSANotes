@@ -1,7 +1,7 @@
 public class Recursion {
 
     public static void main(String args[]){
-        //calling
+        //calling methods
         int recursionResult = factorialWithRecursion(3);
         int result = factorialWithoutRecursion(3);
         System.out.println("using factorialWithRecursion "+recursionResult);
