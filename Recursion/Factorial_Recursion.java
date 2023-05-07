@@ -1,4 +1,6 @@
-public class Recursion {
+package Recursion;
+
+public class Factorial_Recursion {
 
     public static void main(String args[]) {
         //calling methods
@@ -8,7 +10,10 @@ public class Recursion {
         System.out.println("using factorialWithoutRecursion " + result);
     }
 
-    //with recursion
+    /*
+     * With Recursion
+     * No. of lines of code reduced but recursion is not suitable for memory optimization.
+     */
     public static int factorialWithRecursion(int num) {
         if (num <= 1)
             return 1;
@@ -16,7 +21,10 @@ public class Recursion {
             return (num * factorialWithRecursion(num - 1));
     }
 
-    //without recursion
+    /*
+    * Without Recursion
+    * no of lines of code is more but its memory consumption is less as compared to recursion.
+    */
     public static int factorialWithoutRecursion(int num) {
         int factorial = 1;
         for (int i = num; i > 0; i--) {
