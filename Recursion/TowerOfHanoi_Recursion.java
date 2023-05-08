@@ -1,14 +1,16 @@
 package Recursion;
 
 public class TowerOfHanoi_Recursion {
-    //From GFG, use debugger to understand flow of execution.
-    static void towerOfHanoi(int n, char from_rod, char to_rod, char aux_rod) {
-        if (n == 0) {
-            return;
+    //From tutorialsPoint, use debugger to understand flow of execution.
+
+    static void towerOfHanoi(int n, char source, char dest, char aux) {
+        if (n == 1) {
+            System.out.println("Move disk " + n + " from " + source + " to " + dest);
+        } else {
+            towerOfHanoi(n - 1, source, aux, dest); // Note: sequence of parameters also changed here
+            System.out.println("Move disk " + n + " from " + source + " to " + dest);
+            towerOfHanoi(n - 1, aux, dest, source); // Note: sequence of parameters also changed here
         }
-        towerOfHanoi(n - 1, from_rod, aux_rod, to_rod);
-        System.out.println("Move disk " + n + " from rod " + from_rod + " to rod " + to_rod);
-        towerOfHanoi(n - 1, aux_rod, to_rod, from_rod);
     }
 
     // Driver code
