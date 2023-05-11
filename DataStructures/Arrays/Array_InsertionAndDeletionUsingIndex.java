@@ -1,6 +1,6 @@
 package DataStructures.Arrays;
 
-public class Array_InsertionAndDeletion {
+public class Array_InsertionAndDeletionUsingIndex {
 
     //Insertion
     public static void insert(char[] arr, char element, int position) {
