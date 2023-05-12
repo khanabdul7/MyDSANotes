@@ -12,22 +12,28 @@ Microsoft, Wipro, SAP Labs, Cisco, Nagarro, redBus, Accenture, Huawei.
 Time Complexity: O(N^2)
 Auxiliary Space: O(1)
 -----------------------------------------------------------------------------
+NOTE: Try commenting if condition for swap and see difference in no of passes.
  */
 public class BubbleSort {
     public static void sort(int[] arr){
         int temp;
+        boolean swap;
         int pass = 0;
         //Nested for loop.
         for(int i=0; i<arr.length-1; i++){
+            swap = false;
             for(int j=0; j< arr.length-i-1;j++){
                 //Swap if 1st element is greater than 2nd.
                 if(arr[j]>arr[j+1]) {
                     temp = arr[j];
                     arr[j] = arr[j + 1];
                     arr[j + 1] = temp;
+                    swap = true;
                 }
             }
             pass++;
+            if(!swap)
+                break;
         }
         System.out.println("Sorted arr: ");
         for(int a : arr)
