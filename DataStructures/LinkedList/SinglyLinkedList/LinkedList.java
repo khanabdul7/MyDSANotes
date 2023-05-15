@@ -1,5 +1,8 @@
 package DataStructures.LinkedList.SinglyLinkedList;
 
+/**
+ * THIS CLASS CONTAIN MY OWN IMPLEMENTATION OF LINKED LIST.
+ * */
 public class LinkedList {
     private Node head;
     private Node tail;
@@ -69,9 +72,113 @@ public class LinkedList {
         }
     }
 
+    /** PSEUDO CODE FOR SEARCHING IN LL.
+     * Take a TEMP reference & assign it with head node.
+     * WHILE (TEMP != null)
+     *  a -> IF data at TEMP is equal to searched data then return temp.
+     *  b -> ELSE make the next node as temp.
+     * IF data not found return null.
+     **/
+    public Node find(String data){
+        Node temp = this.getHead();
+        int count = 0;
+        while(temp != null){
+            count++;
+            if(temp.getData().equals(data))
+                return temp; // return node if value matches.
+            System.out.println("Node "+count+" : "+temp.getData());
+            temp = temp.getNext();
+        }
+        return null; // return null if data not found.
+    }
+
+    /*** PSEUDO CODE FOR INSERTION AFTER SPECIFIC NODE.
+     * 1. Create a new node with given data.
+     * 2. IF ll is empty, then make that new node the head and the tail node.
+     * 3. ELSE Find the node with dataBefore. if found then,
+     *      a -> call this as the nodeBefore.
+     *      b -> make the link of the new node refer to the link of nodeBefore.
+     *      c -> make the link of nodeBefore refer to the new node.
+     *      d -> If link of the new node is null, make it as the tail node.
+     * 4. If node with dataBefore is not found, display appropriate err message.
+     */
+    public void insertAfterSpecificData(String data, String dataBefore){
+        Node node = new Node(data); // Creating new node from data.
+        if(this.head == null)  // 2
+            this.head=this.tail=node;
+        else{
+            Node nodeBefore = find(dataBefore); // 3 a
+            if(nodeBefore != null){
+                node.setNext(nodeBefore.getNext()); // b
+                nodeBefore.setNext(node); // c
+                if(nodeBefore == this.tail) // If current tail is nodeBefore, then update it as below.
+                    this.tail = node;
+            }
+            else
+                System.out.println("nodeBefore not found!");  // d
+        }
+    }
+    /*** PSEUDO CODE FOR DELETING NODE.
+     * 1. FIND the node to be deleted. if found
+     *   a -> IF node to be deleted is head, make the next node as head.
+     *     aa -> if it is also the tail node, make the tail node as null.
+     * 2. ELSE traverse till the node before the node to be deleted, call it nodeBefore
+     *      a -> make the link of the nodeBefore refer to the link of node to be deleted.
+     *      b -> if the node to be deleted is the tail node, call the nodeBefore as tail node.
+     *      c -> make the link of the node to be deleted as null.
+     * 3. If node to be deleted is not found, display appropriate err message.
+     */
+    public void delete(String data) {
+        if (this.head == null) // Checking if list is empty.
+            System.out.println("List is empty");
+        else {
+            Node result = find(data);
+            if (result == null)
+                System.out.println("Node to be deleted is not found!");
+            else if (result == this.head) { // a
+                this.head = result.getNext();
+                result.setNext(null);
+                if (result == this.tail)  // aa
+                    this.tail = null;
+            } else {
+                // 2
+                Node nodeBefore = null;
+                Node temp = this.head;
+                while (temp != null) {
+                    if (temp.getNext() == result) { // if the next node of temp is the one that we want to delete the make the temp as nodeBefore.
+                        nodeBefore = temp;
+                        break;
+                    }
+                    temp = temp.getNext();
+                }
+                nodeBefore.setNext(result.getNext()); // Setting the deleted node's next reference to the nodeBefore.
+                if (result == this.tail) // b
+                    this.tail = nodeBefore;
+                result.setNext(null);
+            }
+        }
+    }
+
+    /** Exercise : To find element with position. */
+    public int findPosition(String data){
+        if(this.head == null)
+            System.out.println("List is empty");
+        else{
+            Node temp = this.head;
+            int pos = 1;
+            while(temp != null) {
+                if (temp.getData() == data)
+                    return pos;
+                pos++;
+                temp = temp.getNext();
+            }
+        }
+        return 0; // If element not found
+    }
+
     // Testing above implementation.
     public static void main(String[] args){
-        LinkedList linkedList =new LinkedList();
+        LinkedList linkedList = new LinkedList();
         linkedList.addAtEnd("Germany");
         linkedList.addAtEnd("Australia");
         linkedList.addAtEnd("UK");
@@ -79,5 +186,23 @@ public class LinkedList {
         linkedList.addAtBeginning("India");
         // Calling display
         linkedList.display();
+        // Calling Find
+        if(linkedList.find("Australia") != null)
+            System.out.println("Node Found");
+
+        else
+            System.out.println("Node not Found!");
+        // Calling insertAfterSpecificNode
+        linkedList.insertAfterSpecificData("Indonesia","India");
+        // Calling delete
+//        linkedList.display();
+        linkedList.delete("UK");
+//        linkedList.display();
+        // Calling findPosition
+        int pos = linkedList.findPosition("India");
+        if(pos == 0)
+            System.out.println("Element not found!");
+        else
+            System.out.println("Element found at position: "+pos);
     }
 }

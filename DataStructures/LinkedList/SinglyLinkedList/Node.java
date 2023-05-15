@@ -1,6 +1,8 @@
 package DataStructures.LinkedList.SinglyLinkedList;
 
-//Node class, having data as String.
+/**
+ * Node class, having data as String.
+ */
 public class Node {
     String data;
     Node next;
