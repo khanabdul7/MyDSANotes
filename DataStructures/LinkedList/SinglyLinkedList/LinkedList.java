@@ -72,6 +72,19 @@ public class LinkedList {
         }
     }
 
+    /**
+     * DISPLAY BY ACCEPTING A LL
+     * */
+    public void display(LinkedList ll){
+        Node temp = ll.getHead();
+        int count = 0;
+        while(temp != null){
+            count++;
+            System.out.println("Node "+count+" : "+temp.getData());
+            temp = temp.getNext();
+        }
+    }
+
     /** PSEUDO CODE FOR SEARCHING IN LL.
      * Take a TEMP reference & assign it with head node.
      * WHILE (TEMP != null)
@@ -195,14 +208,14 @@ public class LinkedList {
         // Calling insertAfterSpecificNode
         linkedList.insertAfterSpecificData("Indonesia","India");
         // Calling delete
-//        linkedList.display();
+        linkedList.display();
         linkedList.delete("UK");
-//        linkedList.display();
+        linkedList.display();
         // Calling findPosition
-        int pos = linkedList.findPosition("India");
-        if(pos == 0)
-            System.out.println("Element not found!");
-        else
-            System.out.println("Element found at position: "+pos);
+//        int pos = linkedList.findPosition("India");
+//        if(pos == 0)
+//            System.out.println("Element not found!");
+//        else
+//            System.out.println("Element found at position: "+pos);
     }
 }
