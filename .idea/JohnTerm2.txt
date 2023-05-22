@@ -1,0 +1,3 @@
+English:80
+Math:70
+Science:70

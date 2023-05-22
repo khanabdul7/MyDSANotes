@@ -1,0 +1,3 @@
+English: 140
+Math: 140
+Science: 150
