@@ -16,7 +16,7 @@ class UploadResult extends Thread {
 }
 public class ExecutorFrameworkDemo {
     public static void main (String[] args){
-        ExecutorService exService = Executors.newSingleThreadExecutor(); // Creating a Single Thread Executor.
+        ExecutorService exService = Executors.newSingleThreadExecutor(); // Creating a Single Thread Executor. (only 1 Thread will be available for execution of tasks)
         UploadResult uploadRunnable1 = new UploadResult();  // Creating Instance of UploadResultThread.
         UploadResult uploadRunnable2 = new UploadResult();
         exService.execute(uploadRunnable1); // Calling execute() of Executor, execute() will internally call run() of Thread class.
